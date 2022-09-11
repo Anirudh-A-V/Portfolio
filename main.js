@@ -21,7 +21,7 @@ const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
 const material = new THREE.MeshStandardMaterial({ color: 0xFF6347});
 const torus = new THREE.Mesh(geometry, material);
 
-scene.add(torus);
+// scene.add(torus);
 
 const pointLight = new THREE.PointLight(0xffffff);
 pointLight.position.set(5, 5, 5);
@@ -55,6 +55,17 @@ Array(200).fill().forEach(addstar);
 // const spaceTexture = new THREE.TextureLoader().load('space.jpg');
 // scene.background = spaceTexture;
 
+// Avatar
+
+const avatarTexture = new THREE.TextureLoader().load('avatar.svg');
+const avatar = new THREE.Mesh(
+	new THREE.BoxGeometry(10, 10, 10),
+	new THREE.MeshBasicMaterial({ map: avatarTexture })
+);
+
+scene.add(avatar);
+
+
 function cameramover() {
 	const t = document.body.getBoundingClientRect().top;
 	camera.position.z = t * -0.01;
@@ -62,6 +73,8 @@ function cameramover() {
 	camera.rotation.y = t * -0.0002;
 }
 
+avatar.position.set(window.innerWidth / 70, window.innerHeight / 70, 0);
+// avatar.position.z = 3;
 document.body.onscroll = cameramover;
 
 function animate() {
@@ -70,6 +83,10 @@ function animate() {
 	torus.rotation.x += 0.01;
 	torus.rotation.y += 0.005;
 	torus.rotation.z += 0.01;
+	
+	avatar.rotation.x += 0.001;
+	avatar.rotation.y += 0.005;
+	avatar.rotation.z += 0.001;
 
 	controls.update();
 	renderer.render(scene, camera);
