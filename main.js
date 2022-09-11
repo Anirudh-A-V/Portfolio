@@ -15,7 +15,7 @@ renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
 
 camera.position.setZ(30);
-
+renderer.setClearColor(new THREE.Color(0xEEEEEE, 1.0));
 renderer.render(scene, camera);
 
 const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
