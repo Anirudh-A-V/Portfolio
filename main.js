@@ -52,8 +52,17 @@ function addstar() {
 Array(200).fill().forEach(addstar);
 
 
-const spaceTexture = new THREE.TextureLoader().load('space.jpg');
-scene.background = spaceTexture;
+// const spaceTexture = new THREE.TextureLoader().load('space.jpg');
+// scene.background = spaceTexture;
+
+function cameramover() {
+	const t = document.body.getBoundingClientRect().top;
+	camera.position.z = t * -0.01;
+	camera.position.x = t * -0.0002;
+	camera.rotation.y = t * -0.0002;
+}
+
+document.body.onscroll = cameramover;
 
 function animate() {
 	requestAnimationFrame(animate);
